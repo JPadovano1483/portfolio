@@ -1,10 +1,10 @@
 'use client'
-import * as React from 'react'
+import { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import { Button, TextField, Box } from '@mui/material'
 
 const ContactCard = () => {
-  const form = React.useRef()
+  const form = useRef()
   const sendEmail = (e) => {
     e.preventDefault()
 
@@ -35,4 +35,4 @@ const ContactCard = () => {
   )
 }
 
-export default ContactCard;
+export default ContactCard
