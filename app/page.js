@@ -15,11 +15,17 @@ export default function Home() {
       <div className="font-sans items-center justify-items-center min-h-screen p-8 pb-20 gap-16" style={{ position: "relative", zIndex: 1 }}>
         <main className="flex flex-col gap-[32px] items-center sm:items-start">
           <NavBar />
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-center sm:text-left">
-            James Padovano
-          </h1>
-          <Carousel />
-          <ContactCard id="contact" />
+          <section id="about">
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-center sm:text-left">
+              James Padovano
+            </h1>
+          </section>
+          <section id="projects">
+            <Carousel />
+          </section>
+          <section id="contact">
+            <ContactCard />
+          </section>
         </main>
       </div>
     </div>
