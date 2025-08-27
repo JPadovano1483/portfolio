@@ -10,7 +10,7 @@ const ContactCard = () => {
 
     emailjs
       .sendForm("default", "default", form.current, {
-        publicKey: "Xzv3CdKWPr83O3e2P",
+        publicKey: process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY,
       })
       .then(
         () => {
