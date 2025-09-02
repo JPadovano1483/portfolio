@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { useSprings, animated } from "@react-spring/web"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "@mui/icons-material"
+import ProjectPreview from "./ProjectPreview"
 
 const images = [
   "/images/chick_with_a_blick.jpg",
@@ -53,6 +54,8 @@ function getCarouselSprings(current, length) {
 
 const Carousel = () => {
   const [current, setCurrent] = useState(0)
+  const [previewOpen, setPreviewOpen] = useState(false)
+  const [previewImage, setPreviewImage] = useState(null)
   const springs = useSprings(
     images.length,
     getCarouselSprings(current, images.length)
@@ -68,9 +71,17 @@ const Carousel = () => {
 
   // Auto-rotation
   useEffect(() => {
-    const interval = setInterval(scrollRight, 3000)
-    return () => clearInterval(interval)
-  }, [])
+    if (!previewOpen) {
+      const interval = setInterval(scrollRight, 3000)
+      return () => clearInterval(interval)
+    }
+  }, [previewOpen])
+
+  const handleImageClick = (image) => {
+    console.log(`Image clicked: ${image}`)
+    setPreviewImage(image)
+    setPreviewOpen(true)
+  }
 
   return (
     <div className="relative flex items-center justify-center w-full h-[260px]">
@@ -90,6 +101,7 @@ const Carousel = () => {
               height: IMAGE_HEIGHT,
               ...style,
             }}
+            onClick={() => handleImageClick(images[i])}
           >
             <Image
               src={images[i]}
@@ -107,6 +119,12 @@ const Carousel = () => {
       >
         <ChevronRight className="w-6 h-6" />
       </button> */}
+      <ProjectPreview
+        open={previewOpen}
+        imageSrc={previewImage}
+        description="Project description goes here"
+        onClose={() => setPreviewOpen(false)}
+      />
     </div>
   )
 }
